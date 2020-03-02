@@ -25,8 +25,8 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('docker/minaev-doc') {
-                	sh 'docker build -t artmin/toolbox:latest . '
+                dir ('docker/toolbox') {
+                	sh 'docker build -t artmin/minaev-doc:latest . '
                 }
             }
         }
