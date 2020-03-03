@@ -12,6 +12,12 @@ pipeline {
         timestamps()
     }
     stages {
+        stage("test job") {
+            steps {
+                echo " ============== chek =================="
+                }
+            }
+        }
         stage("docker login") {
             steps {
                 echo " ============== docker login =================="
