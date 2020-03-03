@@ -22,7 +22,8 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 sh 'terraform init'
-                sh 'terraform apply -auto-approve && terraform output > outputs.txt'
+                sh 'terraform apply -auto-approve'
+                sh 'terraform output > outputs.txt'
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
                 
              }
