@@ -18,7 +18,15 @@ pipeline {
                 dir ('docker/toolbox') {sh 'docker build . '}
              }
          }
-
+        stage("terraform") {
+            steps {
+                echo " ============== start building image =================="
+                sh 'terraform init'
+                sh 'terraform apply -auto-approve && terraform output > outputs.txt'
+                sh cut outputs.txt -d ' ' -f3 > txt.txt
+                sh ssh -i "MyKeyPair.pem" ec2-user@$(cat txt.txt)
+             }
+         }
      }
     
 }
