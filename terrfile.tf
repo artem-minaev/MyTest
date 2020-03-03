@@ -3,8 +3,8 @@
 
 provider "aws" {
     region = "us-east-2"
-    access_key = "my-access-key"
-    secret_key = "my-secret-key"
+    access_key = "AKIAYX7LCQ24HTX75DES"
+    secret_key = "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"
 }
 
 resource "aws_instance" "web_server_test" {
