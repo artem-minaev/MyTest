@@ -30,7 +30,7 @@ pipeline {
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
                 }
             }
-     
-     }
+        } 
+    }
     
 }
