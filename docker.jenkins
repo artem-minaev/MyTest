@@ -18,16 +18,19 @@ pipeline {
                 dir ('docker/toolbox') {sh 'docker build . '}
              }
          }
-        stage("terraform") {
+        
+        
+        stage("teraform apply") {
             steps {
-                echo " ============== start building image =================="
+                  withAWS(credentials: 'aws_cred', region: 'us-east-2') {
+                     echo " ============== teraform apply =================="
                 sh 'terraform init'
                 sh 'terraform apply -auto-approve'
                 sh 'terraform output > outputs.txt'
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
-                
-             }
-         }
+                }
+            }
+     
      }
     
 }
