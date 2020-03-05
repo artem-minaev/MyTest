@@ -21,12 +21,12 @@ pipeline {
                
                 sh 'terraform init'
                 sh 'terraform apply -auto-approve'
-                sh 'terraform import aws_security_group.elb_sg sg-012ee3ccbcf46a279'
-
+             
                 
                 sh 'terraform output > outputs.txt'
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
                 sh 'sleep 100'
+                sh 'ssh -tt -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ec2-user@(cat txt.txt)'
                 }
            }
         } 
