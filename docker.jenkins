@@ -26,9 +26,9 @@ pipeline {
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
                 sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ec2-user@$(cat txt.txt)'
                 sh 'sudo apt-get update'
-                sh 'sudo apt-get install \apt-transport-https \ca-certificates \curl \gnupg-agent \software-properties-common'
+                sh 'sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common'
                 sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'
-                sh 'sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) \stable"'
+                sh 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
                 sh 'exit'
                 }
            }
