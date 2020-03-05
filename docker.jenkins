@@ -24,7 +24,7 @@ pipeline {
                 
                 sh 'terraform output > outputs.txt'
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
-                sh 'ls -l'
+                sh 'sleep 100'
                 sh 'ssh -tt -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ec2-user@$(cat txt.txt)'
                 }
            }
