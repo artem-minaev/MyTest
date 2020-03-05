@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "web_server_test" {
-  ami = "ami-0998bf58313ab53da" # aws
+  ami = "ami-0fc20dd1da406780b" # aws
   instance_type = "t2.micro"
   key_name = "MyKeyPair"
   vpc_security_group_ids = [aws_security_group.web_server_test.id]
