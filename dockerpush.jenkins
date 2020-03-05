@@ -38,9 +38,9 @@ pipeline {
                 '''
             }
         }
-         stage("docker push") {
+         stage("docker up") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== start up =================="
                 sh '''
                 docker run -p 80:80 artmin/minaev
                 '''
