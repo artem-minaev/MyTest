@@ -24,7 +24,7 @@ pipeline {
                 
                 sh 'terraform output > outputs.txt'
                 sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
-                ssh '-i "MyKeyPair.pem" ec2-user@$(cat txt.txt)'
+                sh 'ssh -i "MyKeyPair.pem" ec2-user@$(cat txt.txt)'
                 }
            }
         } 
