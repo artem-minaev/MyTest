@@ -32,7 +32,7 @@ pipeline {
         stage("teraform ssh") {
            steps {
             echo " ============== teraform ssh =================="
-            sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ubuntu@$(cat txt.txt) \'bash -s\' < bashscr.sh' 
+            //sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ubuntu@$(cat txt.txt) bash -s < bashscr.sh' 
                 //sh 'sudo apt-get update'
                 //sh 'sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common'
                 //sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'
