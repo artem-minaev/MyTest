@@ -36,7 +36,7 @@ pipeline {
             echo " ============== teraform ssh =================="
             sshagent(credentials : ['ssh_key']) {
                    sh 'ssh -tt -o "StrictHostKeyChecking no" ubuntu@$(cat txt.txt) uptime'
-            sh 'ssh -tt -o "StrictHostKeyChecking no" ubuntu@$(cat txt.txt) bash -s < bashscr.sh'
+            sh 'ssh -tt -o "StrictHostKeyChecking no" ubuntu@$(cat txt.txt) echo "hello"'
         }
                //sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ubuntu@$(cat txt.txt) bash -s < bashscr.sh' 
                 //sh 'sudo apt-get update'
