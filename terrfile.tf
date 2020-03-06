@@ -11,6 +11,7 @@ resource "aws_instance" "web_server_test" {
   instance_type = "t2.micro"
   key_name = "MyKeyPair"
   vpc_security_group_ids = [aws_security_group.web_server_test.id]
+  user_data = file("bash.sh")
 
   tags =  {
     Name = "AWS server"
