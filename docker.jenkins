@@ -20,15 +20,12 @@ pipeline {
                 echo " ============== teraform apply =================="
                
                 sh 'terraform init'
-                   sh 'ls -l'
-                sh 'pwd'
                 sh 'terraform apply -auto-approve'
              
-                sh 'terraform output > outputs.txt'
-                sh 'cut outputs.txt -d \' \' -f3 > txt.txt'
                 sh '''
-                 terraform output > outputs.txt
+                terraform output > outputs.txt
                 cut outputs.txt -d \' \' -f3 > txt.txt
+                ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@(cat txt.txt)
                 '''
                 
                 }
