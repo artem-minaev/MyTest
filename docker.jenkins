@@ -35,7 +35,7 @@ pipeline {
             steps {
            // echo " ============== teraform ssh =================="
                  sshagent(credentials : ['ssh_key']) {
-                  sh 'ssh -tt -o "StrictHostKeyChecking no" -l cloudbees $(cat txt.txt) uname -a'
+                  sh 'ssh -tt -o "StrictHostKeyChecking no" $(cat txt.txt)'
      //       sh 'ssh -tt -o "StrictHostKeyChecking no" ubuntu@$(cat txt.txt) echo "hello"'
                  }
                //sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ubuntu@$(cat txt.txt) bash -s < bashscr.sh' 
