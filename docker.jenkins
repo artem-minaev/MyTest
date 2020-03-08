@@ -20,33 +20,21 @@ pipeline {
                 echo " ============== teraform apply =================="
                
                 sh 'terraform init'
-                sh 'terraform apply -auto-approve'
-             
-                sh '''
-                terraform output > outputs.txt
-                cut outputs.txt -d \' \' -f3 > txt.txt
-                ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@$(cat txt.txt) 'sudo docker restart artmin/minaev-doc'
-                '''
-                 
+                sh 'terraform apply -auto-approve'  
                 }
            }
         } 
         
-      //  stage("teraform ssh") {
-         //   steps {
-           // echo " ============== teraform ssh =================="
-               //  sshagent(credentials : ['ssh_key']) {
-                  //sh 'ssh -tt -o "StrictHostKeyChecking no" $(cat txt.txt)'
-     //       sh 'ssh -tt -o "StrictHostKeyChecking no" ubuntu@$(cat txt.txt) echo "hello"'
-             //    }
-               //sh 'ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair.pem" ubuntu@$(cat txt.txt) bash -s < bashscr.sh' 
-                //sh 'sudo apt-get update'
-                //sh 'sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common'
-                //sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'
-                //sh 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
-                //sh 'exit'
-        //   }
-    //    } 
+        stage("teraform ssh") {
+            steps {
+            echo " ============== ssh deploy =================="
+                sh '''
+                terraform output > outputs.txt
+                cut outputs.txt -d \' \' -f3 > txt.txt
+                ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@$(cat txt.txt) 'sudo docker pull artmin/minaev-doc;sudo service docker restart;sudo docker run -d -p 80:80 artmin/minaev-doc'
+                '''
+           }
+        } 
         
     }
     
