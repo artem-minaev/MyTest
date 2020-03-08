@@ -38,13 +38,6 @@ pipeline {
                 '''
             }
         }
-         stage("docker up") {
-            steps {
-                echo " ============== start up =================="
-                sh '''
-                docker run -p 80:80 artmin/minaev:latest
-                '''
-            }
-        }
+         
     }
 }
