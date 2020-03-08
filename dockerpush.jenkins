@@ -15,6 +15,7 @@ pipeline {
         stage("docker login") {
             steps {
                 echo " ============== docker login =================="
+                sh 'sudo service docker restart'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub_minaev', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker login -u $USERNAME -p $PASSWORD
