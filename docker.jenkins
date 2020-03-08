@@ -25,7 +25,7 @@ pipeline {
                 sh '''
                 terraform output > outputs.txt
                 cut outputs.txt -d \' \' -f3 > txt.txt
-                ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@$(cat txt.txt) 'll;cd ./MyTest/docker/toolbox/src && ll'
+                ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@$(cat txt.txt) 'll;cd /MyTest/docker/toolbox/src;git pull;mv ./index.html /var/www/html/index.html'   
                 '''
                 
                 }
