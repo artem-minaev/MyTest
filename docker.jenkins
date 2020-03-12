@@ -27,8 +27,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('docker/toolbox') {
-                     sh '''
-                          docker push 
+                     sh ''' 
                          docker build -t artmin/minaev-doc:latest . 
                         '''
                 }
