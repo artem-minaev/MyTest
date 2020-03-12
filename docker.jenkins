@@ -39,7 +39,7 @@ pipeline {
                 docker push artmin/minaev-doc:latest
                 docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:$BUILD_NUMBER
                 docker push artmin/minaev-doc:$BUILD_NUMBER
-                
+
                 '''
             }
         }
@@ -48,7 +48,7 @@ pipeline {
            steps {
             withCredentials([[$class:'AmazonWebServicesCredentialsBinding',credentialsId:'aws_cred',accessKeyVariable:'AWS_ACCESS_KEY_ID',secretKeyVariable:'AWS_SECRET_ACCESS_KEY']]){
                 echo " ============== teraform apply =================="
-                dir ('Terraform'){
+                dir ("Terraform"){
                     sh '''
                           sh 'terraform init'
                           sh 'terraform apply -auto-approve'
@@ -61,7 +61,7 @@ pipeline {
         stage("teraform ssh") {
             steps {
             echo " ============== ssh deploy =================="
-            dir ('Terraform'){
+            dir ("Terraform"){
               sh '''
               terraform output > outputs.txt
               cut outputs.txt -d \' \' -f3 > ip_output.txt
