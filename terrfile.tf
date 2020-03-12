@@ -1,13 +1,18 @@
 # Terraform
 # Build web sever
 
+variable "image_id" {
+  type        = string
+  default = ["ami-0fc20dd1da406780b"] #ubuntu
+  description = "The id of the machine image"
+}
+
 provider "aws" {
     region = "us-east-2"
-   
 }
 
 resource "aws_instance" "web_server_test" {
-  ami = "ami-0fc20dd1da406780b" # aws
+  ami = var.image_id
   instance_type = "t2.micro"
   key_name = "MyKeyPair"
   vpc_security_group_ids = [aws_security_group.web_server_test.id]
