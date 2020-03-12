@@ -27,12 +27,10 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('docker/toolbox') {
                      sh '''
                          docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:($BUILD_NUMBER  * 0,1)
                          docker build -t artmin/minaev-doc:latest .
                         '''
-                }
             }
         }
         stage("docker push") {
