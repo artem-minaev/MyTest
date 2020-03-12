@@ -5,11 +5,6 @@ provider "aws" {
     region = "us-east-2"
 }
 
-variable "image_id" {
-  type        = string
-  default = ["ami-0959e8feedaf156bf"] 
-}
-
 resource "aws_instance" "web_server_test" {
   ami = var.image_id
   instance_type = "t2.micro"
@@ -20,32 +15,8 @@ resource "aws_instance" "web_server_test" {
   tags =  {
     Name = "AWS server"
     Owner = "Artem Minaev"
-    Project = "Terraform test"
+    Project = "Terraform deploy"
   }
-}
-
-resource "aws_security_group" "web_server_test" {
-  name        = "web server security group"
-  description = "Allow 80,433,8080,22 tcp"
-
-
-  dynamic "ingress"{
-    for_each = ["80","22","8080","443"]
-    content{
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
-
-  egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
-  }
-
 }
 
 output "instance_ips" {
