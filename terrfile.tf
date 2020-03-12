@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "web_server_test" {
-  ami = var.image_id
+  ami = "ami-0959e8feedaf156bf"
   instance_type = "t2.micro"
   key_name = "MyKeyPair"
   vpc_security_group_ids = [aws_security_group.web_server_test.id]
