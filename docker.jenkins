@@ -29,7 +29,6 @@ pipeline {
                 dir ('docker/toolbox') {
                      sh ''' 
                          docker tag $(docker images artmin/minaev-doc:latest -q) fedora/httpd:$BUILD_NUMBER
-                         docker rmi $(docker images artmin/minaev-doc -q)
                          docker build -t artmin/minaev-doc:latest . 
                         '''
                 }
