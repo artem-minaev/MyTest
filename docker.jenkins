@@ -49,9 +49,9 @@ pipeline {
             withCredentials([[$class:'AmazonWebServicesCredentialsBinding',credentialsId:'aws_cred',accessKeyVariable:'AWS_ACCESS_KEY_ID',secretKeyVariable:'AWS_SECRET_ACCESS_KEY']]){
                 echo " ============== teraform apply =================="
                     sh '''
-                          'terraform init'
-                          'terraform plan'
-                          'terraform apply -auto-approve'
+                          terraform init
+                          terraform plan
+                          terraform apply -auto-approve
                        '''
                 }
            }
