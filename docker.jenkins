@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push artmin/minaev-doc:lstest
+                docker push artmin/minaev-doc:latest
                 '''
             }
         }
