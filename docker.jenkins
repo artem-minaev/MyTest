@@ -28,7 +28,8 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                      sh '''
-                         docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:($BUILD_NUMBER  * 0,1)
+                         Number = $BUILD_NUMBER*0,1
+                         docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:$Number
                          docker build -t artmin/minaev-doc:latest .
                         '''
             }
@@ -37,7 +38,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push artmin/minaev-doc:($BUILD_NUMBER * 0,1)
+                docker push artmin/minaev-doc:$Number
                 docker push artmin/minaev-doc:latest
                 docker rmi -f  $(docker images -a  -q)
                 '''
