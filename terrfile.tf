@@ -3,6 +3,7 @@
 
 provider "aws" {
     region = "us-east-2"
+    
 }
 
 resource "aws_instance" "web_server_test" {
