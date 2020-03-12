@@ -33,7 +33,7 @@ pipeline {
               sh '''
               terraform output > outputs.txt
               cut outputs.txt -d \' \' -f3 > ip_output.txt
-              ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_ssh/MyKeyPair" ubuntu@$(cat ip_output.txt) 'docker stop $(docker ps -a -q);docker rm $(docker ps -a -q);docker rmi -f $(docker images -a -q);docker pull artmin/minaev-doc:latest;docker run -d --name artmin -p 80:80 artmin/minaev-doc:latest'
+              ssh -tt -o "StrictHostKeyChecking no" -i "/var/lib/jenkins/aws_cred/MyKeyPair" ubuntu@$(cat ip_output.txt) 'docker stop $(docker ps -a -q);docker rm $(docker ps -a -q);docker rmi -f $(docker images -a -q);docker pull artmin/minaev-doc:latest;docker run -d --name artmin -p 80:80 artmin/minaev-doc:latest'
               '''
             }
         }
