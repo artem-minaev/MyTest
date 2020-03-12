@@ -21,7 +21,7 @@ pipeline {
                 echo " ============== teraform apply =================="
                     sh '''
                           terraform init
-                          sh 'terraform plan
+                          terraform plan
                           terraform apply -auto-approve
                        '''
                 }
