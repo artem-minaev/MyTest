@@ -14,6 +14,35 @@ pipeline {
 
     stages {
 
+        stage("docker login") {
+            steps {
+                echo " ============== docker login =================="
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_minaev', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
+        stage("create docker image") {
+            steps {
+                echo " ============== start building image =================="
+                     sh '''
+                         docker rmi -f $(docker images -a -q);
+                         docker build -t artmin/minaev-doc:latest .
+                        '''
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                docker push artmin/minaev-doc:latest
+                docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:$BUILD_NUMBER
+                docker push artmin/minaev-doc:$BUILD_NUMBER
+                '''
+            }
+        }
         
         stage("teraform apply") {
            steps {
