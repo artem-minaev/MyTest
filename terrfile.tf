@@ -1,14 +1,14 @@
 # Terraform
 # Build web sever
 
-variable "image_id" {
-  type        = string
-  default = ["ami-0fc20dd1da406780b"] #ubuntu
-  description = "The id of the machine image"
-}
-
 provider "aws" {
     region = "us-east-2"
+}
+
+variable "image_id" {
+  type        = string
+  default = ["ami-0959e8feedaf156bf"] #ubuntu
+  description = "The id of the machine image"
 }
 
 resource "aws_instance" "web_server_test" {
