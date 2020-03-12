@@ -7,8 +7,7 @@ provider "aws" {
 
 variable "image_id" {
   type        = string
-  default = ["ami-0959e8feedaf156bf"] #ubuntu
-  description = "The id of the machine image"
+  default = ["ami-0959e8feedaf156bf"] 
 }
 
 resource "aws_instance" "web_server_test" {
