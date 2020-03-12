@@ -39,7 +39,9 @@ pipeline {
                 docker push artmin/minaev-doc:latest
                 docker tag $(docker images artmin/minaev-doc:latest -q) artmin/minaev-doc:$BUILD_NUMBER
                 docker push artmin/minaev-doc:$BUILD_NUMBER
-                docker rmi -f  $(docker images -a  -q)
+                service docker stop
+                rm -rf /var/lib/docker
+                service docker start
                 '''
             }
         }
