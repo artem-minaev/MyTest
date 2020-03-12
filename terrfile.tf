@@ -18,6 +18,7 @@ resource "aws_instance" "web_server_test" {
     Project = "Terraform deploy"
   }
 }
+
 resource "aws_security_group" "web_server_test" {
   name        = "web server security group"
   description = "Allow 80,8080,22 tcp"
