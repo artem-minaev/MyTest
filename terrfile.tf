@@ -25,7 +25,7 @@ resource "aws_security_group" "web_server_test" {
 
 
   dynamic "ingress"{
-    for_each = ["80","22","8080",]
+    for_each = ["80","22","8080"]
     content{
       from_port   = ingress.value
       to_port     = ingress.value
