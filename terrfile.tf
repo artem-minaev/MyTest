@@ -1,11 +1,12 @@
 provider "aws" {
-    region = "us-east-1"
+    region = "us-east-2"
    
 }
 
 resource "aws_instance" "web_server_test" {
-  ami = "ami-07ebfd5b3428b6f4d" # aws
+  ami = "ami-0fc20dd1da406780b" # aws
   instance_type = "t2.micro"
+  key_name = "MyKeyPair"
   vpc_security_group_ids = [aws_security_group.web_server_test.id]
   user_data = file("bash.sh")
 
