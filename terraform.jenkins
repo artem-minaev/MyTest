@@ -1,0 +1,34 @@
+#!groovy
+// Run docker build
+
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+        timestamps()
+            }
+
+    stages {
+
+       
+        stage("teraform apply") {
+           steps {
+            withCredentials([[$class:'AmazonWebServicesCredentialsBinding',credentialsId:'aws_cred',accessKeyVariable:'AWS_ACCESS_KEY_ID',secretKeyVariable:'AWS_SECRET_ACCESS_KEY']]){
+                echo " ============== teraform apply =================="
+                    sh '''
+                          terraform init
+                          terraform apply -auto-approve
+                       '''
+                }
+           }
+        }
+
+        
+
+    }
+
+}
