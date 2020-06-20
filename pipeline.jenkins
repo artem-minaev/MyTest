@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                      sh '''
-                         echo "stage 1"
+                         echo "stage 1111111111"
                          docker build -t artmin/minaev-doc:latest .
                         '''
             }
