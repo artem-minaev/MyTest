@@ -5,7 +5,7 @@ variable "zone"{
 
 variable "image_id"{
   type = "string"
-  default = "ami-0fc20dd1da406780b" 
+  default = "$AMI" 
   description = "ubuntu18"
 }
 
